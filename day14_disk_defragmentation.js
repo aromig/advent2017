@@ -1,4 +1,5 @@
 var input = 'vbqugkhl';
+
 var bits = 128;
 var hash = [];
 
@@ -62,12 +63,16 @@ for (var i = 0; i < bits; i++) {
 }
 
 var bitHash = [];
+var grid = [];
+
 for (var i = 0; i < bits; i++) {
     var line = '';
+    grid[i] = [];
     for (j = 0; j < hash[i].length; j++) {
         line += hex2bin(hash[i][j]);
     }
     bitHash.push(line);    
+    grid[i] = line.split('').map(x => (x === '1' ? 1 : 0));
 }
 
 // Part 1
@@ -76,9 +81,39 @@ var used = 0;
 
 bitHash.forEach(line => {
     for (var i = 0; i < line.length; i++) {
-        used += (line[i] == '1' ? 1 : 0);
+        used += line[i] == '1' ? 1 : 0;
     }
+
+
 });
 
 console.log('Part 1:', used);
 
+// Part 2
+
+var groups = 0;
+
+for (var y = 0; y < grid.length; ++y) {
+    for (var x = 0; x < grid[y].length; ++x) {
+        if (grid[y][x] === 0) continue;
+        var check = [[x,y]];
+        while (check.length > 0) {
+            var checkXY = check.pop();
+            var cX = checkXY[0];
+            var cY = checkXY[1];
+            if (grid[cY][cX] === 0) continue;
+            grid[cY][cX] = 0;
+            // check to left
+            if (grid[cY] && grid[cY][cX - 1]) check.push([cX - 1, cY]);
+            // check to right
+            if (grid[cY] && grid[cY][cX + 1]) check.push([cX + 1, cY]);
+            // check up
+            if (grid[cY - 1] && grid[cY - 1][cX]) check.push([cX, cY - 1]);
+            // check down
+            if (grid[cY + 1] && grid[cY + 1][cX]) check.push([cX, cY + 1]);
+        }
+        groups++;
+    }
+}
+
+console.log('Part 2:', groups);
