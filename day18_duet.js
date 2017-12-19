@@ -40,9 +40,11 @@ snd a
 jgz f -16
 jgz a -19`;
 
+
 // Part 1
 
 var registers = {};
+
 var input = inputString.split('\n')
                         .map(line => {
                             var parts = line.split(' ');
@@ -58,7 +60,7 @@ var input = inputString.split('\n')
 var played = [];
 var recovered = null;
 
-function doInstruction(cmd, register, val = null) {
+function doInstruction(cmd, register, val) {
     var nextCmd = 1;
     var real_val = (!isNaN(parseInt(val))) ? val : registers[val];
 
@@ -96,3 +98,87 @@ console.log('Part 1:', recovered);
 
 // Part 2
 
+var reg_0 = {};
+var reg_1 = {};
+
+var input = inputString.split('\n')
+                        .map(line => {
+                            var parts = line.split(' ');
+                            if (parts[0] != 'snd' && parts[0] != 'rcv') {
+                                parts[2] = (!isNaN(parseInt(parts[2]))) ? parseInt(parts[2]) : parts[2];
+                            }
+                            if (isNaN(parseInt(parts[1]))) {
+                                reg_0[parts[1]] = null;
+                                reg_1[parts[1]] = null;
+                            }
+                            return parts;
+                        });
+
+reg_0['p'] = 0;
+reg_1['p'] = 1;
+
+var queue_0 = [];
+var queue_1 = [];
+var send = 0;
+
+function doInstruction2(program, reg, cmd, register, val) {
+    var nextCmd = 1;
+
+    var real_val = (!isNaN(parseInt(val))) ? val : reg[val];
+    var real_reg_val = (!isNaN(parseInt(val))) ? val : reg[register];
+
+    switch(cmd) {
+        case 'set': reg[register] = real_val;
+                    break;
+        case 'add': reg[register] += real_val;
+                    break;
+        case 'mul': reg[register] *= real_val;
+                    break;
+        case 'mod': reg[register] = reg[register] % real_val;
+                    break;
+        case 'jgz': var num = isNaN(parseInt(register)) ? reg[register] : register;
+                    if (num > 0)
+                        nextCmd = real_val;
+                    break;
+        case 'snd': if (program == 0) {
+                        queue_1.push(real_reg_val);
+                    } else {
+                        queue_0.push(real_reg_val);
+                        send++;
+                    }
+                    break;
+        case 'rcv': if (program == 0) {
+                        if (queue_0.length > 0) {
+                            reg[register] = queue_0[0];
+                            queue_0 = queue_0.slice(1);
+                            nextCmd = 1;
+                        } else {
+                            nextCmd = 0;
+                        }
+                    } else {
+                        if (queue_1.length > 0) {
+                            reg[register] = queue_1[0];
+                            queue_1 = queue_1.slice(1);
+                            nextcmd = 1;
+                        } else {
+                            nextCmd = 0;
+                        }
+                    }
+                    break;
+        default:    break;
+    }
+
+    return nextCmd;
+}
+
+var step_0 = step_1 = 0;
+
+do {
+    var next_0 = doInstruction2(0, reg_0, input[step_0][0], input[step_0][1], input[step_0][2]);
+    var next_1 = doInstruction2(1, reg_1, input[step_1][0], input[step_1][1], input[step_1][2]);
+
+    step_0 += next_0;
+    step_1 += next_1;
+} while (!(next_0 == 0 && next_1 == 0));
+
+console.log('Part 2:', send);
