@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 4
+// http://adventofcode.com/2017/day/4
+
 var inputString = `sayndz zfxlkl attjtww cti sokkmty brx fhh suelqbp
 xmuf znkhaes pggrlp zia znkhaes znkhaes
 nti rxr bogebb zdwrin

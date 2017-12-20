@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 17
+// http://adventofcode.com/2017/day/17
+
 var input = 301;
 
 var buffer = [0], index = 0;

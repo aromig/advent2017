@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 14
+// http://adventofcode.com/2017/day/14
+
 var input = 'vbqugkhl';
 
 var bits = 128;

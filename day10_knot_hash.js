@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 10
+// http://adventofcode.com/2017/day/10
+
 var input = `227,169,3,166,246,201,0,47,1,255,2,254,96,3,97,144`;
 
 var elements = input.split(',');

@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 15
+// http://adventofcode.com/2017/day/15
+
 var gen_A = 783, gen_B = 325;
 var factor_A = 16807, factor_B = 48271, divisor = 2147483647;
 var pairs = 40000000, total = 0;

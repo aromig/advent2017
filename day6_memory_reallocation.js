@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 6
+// http://adventofcode.com/2017/day/6
+
 var inputString = '5	1	10	0	1	7	13	14	3	12	8	10	7	12	0	6';
 
 inputString = '[' + inputString.replace(/\t/g, ',') + ']';

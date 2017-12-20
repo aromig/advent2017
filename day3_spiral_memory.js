@@ -1,3 +1,6 @@
+// Advent of Code 2017 - Day 3
+// http://adventofcode.com/2017/day/3
+
 // Part 1
 
 var n = 265149;
