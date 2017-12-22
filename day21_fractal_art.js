@@ -1,3 +1,6 @@
+// Advent of Code - Day 21
+// http://adventofcode.com/2017/day/21
+
 var inputString = ``;
 
 var initial_pattern = `.#.
