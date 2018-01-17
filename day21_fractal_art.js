@@ -10,53 +10,53 @@ var initial_pattern = `.#.
 var pattern = initial_pattern.split('\n')
     .map(x => x.split(''));
 
-var rulebook = inputString.split('\n');
 var rules = [];
+var rulebook = inputString.split('\n')
+        .forEach(line => {
+        var parts = line.split(' => ');
+        var input = parts[0].split('/').map(x => x.split(''));
+        var output = parts[1].split('/').map(x => x.split(''));
 
-rulebook.forEach(line => {
-    var parts = line.split(' => ');
-    var input = parts[0].split('/').map(x => x.split(''));
-    var output = parts[1].split('/').map(x => x.split(''));
-
-    var split = rules[input.length];
-    if (!split) {
-        split = [];
-        rules[input.length] = split;
-    }
-
-    var hashes = countHashes(input);
-    var hash_counts = split[hashes];
-    if (!hash_counts) {
-        hash_counts = [];
-        split[hashes] = hash_counts;
-    }
-
-    hash_counts.push({input: input, output: output});
-});
-
-//var iterations = 5; // Part 1
-var iterations = 18; // Part 2
-
-for (var i = 0; i < iterations; i++) {
-    var mod = pattern.length % 2 == 0 ? 2 : 3;
-    var num = pattern.length / mod;
-
-    var new_pattern = new Array(num * (mod+1))
-        .fill(undefined)
-        .map(x => new Array(num * (mod+1))
-            .fill('.'));
-    
-    for (var y = 0; y < num; y++) {
-        for (var x = 0; x < num; x++) {
-            var section = getSection(pattern, y * mod, x * mod, mod);
-            var stamp = match(section, rules);
-            stampPattern(new_pattern, stamp, y, x, mod + 1);
+        var split = rules[input.length];
+        if (!split) {
+            split = [];
+            rules[input.length] = split;
         }
+
+        var hashes = countHashes(input);
+        var hash_counts = split[hashes];
+        if (!hash_counts) {
+            hash_counts = [];
+            split[hashes] = hash_counts;
+        }
+
+        hash_counts.push({input: input, output: output});
+    });
+
+function ENHANCE(pattern, iterations) {
+    for (var i = 0; i < iterations; i++) {
+        var mod = pattern.length % 2 == 0 ? 2 : 3;
+        var num = pattern.length / mod;
+
+        var new_pattern = new Array(num * (mod+1))
+            .fill(undefined)
+            .map(x => new Array(num * (mod+1))
+                .fill('.'));
+        
+        for (var y = 0; y < num; y++) {
+            for (var x = 0; x < num; x++) {
+                var section = getSection(pattern, y * mod, x * mod, mod);
+                var stamp = match(section, rules);
+                stampPattern(new_pattern, stamp, y, x, mod + 1);
+            }
+        }
+        pattern = new_pattern;
     }
-    pattern = new_pattern;
+    return pattern;
 }
 
-console.log(countHashes(pattern));
+console.log('Part 1:', countHashes(ENHANCE(pattern, 5))); // Part 1
+console.log('Part 2:', countHashes(ENHANCE(pattern, 18))); // Part 2
 
 /* ***** FUNCTIONS ***** */
 
