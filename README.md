@@ -8,8 +8,6 @@ Last month I participated in [Advent of Code](http://adventofcode.com/) for the 
 
 There are no restrictions on which language(s) to utilize but I decided to stick with JavaScript, plain JavaScript at that. I’m very comfortable with it and I was certain there were going to be puzzles that would force me to go outside my comfort zone and learn a few things along the way. And boy did I!
 
----
-
 ## I Learned How to Code Better
 
 They’re right. Practice does make perfect, or at least much closer to perfect than before. I feel that I have honed my skills in at least three areas: coding techniques & methods, logic & problem solving, and debugging.
@@ -24,8 +22,6 @@ They’re right. Practice does make perfect, or at least much closer to perfect 
 
 * **Break it down.** There were a few puzzles where I needed to break up the problem into smaller bites, creating separate functions to handle those tasks. It helped me visualize the flow of logic and let me re-use similar modules for the second part of the challenge.
 
----
-
 ## I Learned Things I Knew I Didn’t Know
 
 I’m not a senior developer nor a computer scientist so of course there was bound to be topics these puzzles make reference to that I didn’t have a clue on. Luckily the puzzle flavor text gracefully explains the concepts (coupled with wiki links in case we’re totally confused) in a way that fits the story well. However, sometimes I got stuck anyway. There were definitely moments of _“OMG I’m not a computer science major! How do I even..!?”_
@@ -33,8 +29,6 @@ I’m not a senior developer nor a computer scientist so of course there was bou
 I would be on a high from figuring out a challenge all by myself and when the next one goes live at midnight, my heart sinks. I would then be utterly confused (and re-evaluating my career choices). For those I let myself sleep on it to get a fresh perspective in the morning. Usually that helped a lot. Rest is definitely important.
 
 Yet there were a few that I had to set aside my pride and check the [AoC sub-reddit](https://www.reddit.com/r/adventofcode/) page. Scanning through the replies of hints of solutions, I would eventually find a semblance of something I could understand and dissect. Note that I did not copy & paste code when I was stuck. You cannot learn anything that way. In most of these instances, I had to translate the concept into JavaScript anyway. Even others’ JavaScript code were within the context of a framework or library. The important part is that I tried to understand why it worked before writing my own code.
-
----
 
 ## Conclusion
 
